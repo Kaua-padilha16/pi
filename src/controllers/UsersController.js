@@ -6,7 +6,6 @@ const ListUsersService = require("../Services/UserServices/ListUsersService");
 const ListUserByIdService = require("../Services/UserServices/ListUserByIdService");
 const UpdateUsersService = require("../Services/UserServices/UpdateUsersService");
 const DeleteUsersService = require("../Services/UserServices/deleteUsersService");
-const UpdateUserAdminService = require("../Services/UserServices/UpdateUserAdminService");
 
 const UsersRepository = require("../Repositories/UsersRepositories/UsersRepository");
 const usersRepository = new UsersRepository()
@@ -16,7 +15,6 @@ const listUsersService = new ListUsersService(usersRepository)
 const listUserByIdService = new ListUserByIdService(usersRepository)
 const updateUsersService = new UpdateUsersService(usersRepository)
 const deleteUsersService = new DeleteUsersService(usersRepository)
-const updateUserAdminService = new UpdateUserAdminService(usersRepository)
 //--------------------------------------------------------------------------------------------//
 
 class UsersController {
@@ -48,13 +46,6 @@ class UsersController {
         await updateUsersService.execute({name, email, password, fone, cpf, user_id})
 
         return res.status(200).json("Usuário atualizado com sucesso!")
-    }
-    async updateUserAdmin(req, res) {
-        const {user_id} = req.params
-
-        await updateUserAdminService.execute({user_id})
-
-        return res.status(200).json("Alterado com sucesso!!");
     }
     async deleteUser(req, res) {
         const {user_id} = req.params

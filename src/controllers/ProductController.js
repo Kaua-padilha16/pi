@@ -61,6 +61,10 @@ class ProductController{
 
         return res.status(200).json("Alterado com sucesso!!");
     }
+    async totalProducts(req, res) {
+        const total = await totalProducts.execute()
+        return res.status(200).json(total)
+    }
 }
 
 module.exports = ProductController

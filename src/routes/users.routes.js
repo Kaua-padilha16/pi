@@ -1,17 +1,28 @@
 const { Router } = require("express");
 const UsersController = require("../controllers/UsersController");
-const checkEmailUse = require("../middlewares/checkEmailUse")
-const checkUsersExist = require("../middlewares/checkUsersExists")
+
+//middlewares----------------------------------------------------------------------
+const checkUsersExist = require("../middlewares/informationUser/checkUsersExists");
+const checkNameUserExists = require("../middlewares/informationUser/checkNameUserExists");
+const checkEmailUse = require("../middlewares/informationUser/checkEmailUse");
+const checkFoneUserExists = require("../middlewares/informationUser/checkFoneUserExists.");
+const checkCpfUserExists = require("../middlewares/informationUser/checkCpfUserExists");
+//---------------------------------------------------------------------------------
 
 const usersRoutes = Router();
 
 const usersController = new UsersController();
 
-usersRoutes.post("/", checkEmailUse, usersController.createUser);
-usersRoutes.get("/", usersController.listUser)
-usersRoutes.get("/:user_id", usersController.listUserById)
-usersRoutes.put("/update/:user_id", usersController.updateUser)
-usersRoutes.delete("/delete/:user_id", checkUsersExist, usersController.deleteUser)
-usersRoutes.patch("/adm/:user_id", usersController.updateUserAdmin)
+usersRoutes.post("/",
+    checkNameUserExists,
+    checkEmailUse,
+    checkFoneUserExists,
+    checkCpfUserExists,
+  usersController.createUser);
+
+usersRoutes.get("/", usersController.listUser);
+usersRoutes.get("/:user_id", usersController.listUserById);
+usersRoutes.put("/update/:user_id", usersController.updateUser);
+usersRoutes.delete("/delete/:user_id",checkUsersExist, usersController.deleteUser);
 
 module.exports = usersRoutes;

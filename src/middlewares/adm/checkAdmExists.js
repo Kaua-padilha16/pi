@@ -1,6 +1,6 @@
-const knex = require ("../database/knex")
+const knex = require ("../../database/knex")
 
-async function checkAdm (req, res, next){
+async function checkAdmExists (req, res, next){
     const adm = await knex("adm")
 
     if(adm.length === 1){
@@ -10,4 +10,4 @@ async function checkAdm (req, res, next){
     next()
 }
 
-module.exports = checkAdm 
+module.exports = checkAdmExists

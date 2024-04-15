@@ -1,7 +1,7 @@
-const knex = require("../database/knex");
-const AppError = require("../utils/AppError");
+const knex = require("../../database/knex");
+const AppError = require("../../utils/AppError");
 
-async function checkProductNome(req, res, next) {
+async function checkProductName(req, res, next) {
   const { nome } = req.body;
   try {
     const [product] = await knex("products").where({ nome });
@@ -16,4 +16,4 @@ async function checkProductNome(req, res, next) {
   }
 }
 
-module.exports = checkProductNome;
+module.exports = checkProductName;

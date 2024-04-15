@@ -13,13 +13,13 @@ class SessionsController {
         const adm = await knex("adm").where({email}).first()
  
         if(!adm) {
-            throw new AppError("E-mail e/ou senha incorreta.", 401)
+            return res.status(400).json("E-mail e/ou senha incorreta.")
         }
         
         const passwordMatched = await compare(password, adm.password)
  
         if(!passwordMatched) {
-            throw new AppError("E-mail e/ou senha incorreta", 401)
+            return res.status(400).json("E-mail e/ou senha incorreta")
         }
  
         const {secret, expiresIn} = authConfig.jwt

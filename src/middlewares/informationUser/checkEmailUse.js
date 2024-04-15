@@ -1,12 +1,12 @@
-const knex = require("../database/knex");
-const AppError = require("../utils/AppError");
+const knex = require("../../database/knex");
+const AppError = require("../../utils/AppError");
 
 async function checkEmailUse(req, res, next) {
-  const { email } = req.body;
+  const  { email } = req.body;
   try {
-    const [user] = await knex("users").where({ email });
+    const [userE] = await knex("users").where({ email: email });
 
-    if (user) {
+    if (userE) {
       throw new AppError("Este e-mail já está em uso.", 400);
     }
 

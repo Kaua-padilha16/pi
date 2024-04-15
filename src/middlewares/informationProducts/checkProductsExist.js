@@ -1,4 +1,4 @@
-const knex = require ("../database/knex")
+const knex = require ("../../database/knex")
 
 async function checkProductExist (req, res, next){
     const {id} = req.params

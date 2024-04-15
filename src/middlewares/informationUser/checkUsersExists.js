@@ -1,4 +1,4 @@
-const knex = require ("../database/knex")
+const knex = require ("../../database/knex")
 
 async function checkUsersExist (req, res, next){
     const {user_id} = req.params
